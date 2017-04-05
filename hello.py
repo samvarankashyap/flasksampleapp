@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template
-from flask import Flask, request, send_from_directory
+from flask import send_from_directory
 
 app = Flask(__name__,static_url_path='/static')
 
