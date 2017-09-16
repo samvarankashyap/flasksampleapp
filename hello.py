@@ -1,8 +1,18 @@
+import io
+import ConfigParser
 from flask import Flask
 from flask import render_template
 from flask import send_from_directory
 
 app = Flask(__name__,static_url_path='/static')
+
+conf_str = open("app.conf", "r").read()
+config = ConfigParser.RawConfigParser(allow_no_value=True)
+config.readfp(io.BytesIO(conf_str))
+
+DB_HOST = config.get("dbserver", "host")
+DB_USER = config.get("dbserver", "username")
+DB_PASS = config.get("dbserver", "password")
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
@@ -22,14 +32,13 @@ def send_css(path):
 
 @app.route('/')
 def index():
-    return 'Index Page'
+    return "Index Page<br>"+DB_HOST+"<br>"+DB_USER+"<br>"+DB_PASS
 
 
 @app.route('/user/<username>')
 def show_user_profile(username):
     # show the user profile for that user
     return 'User %s' % username
-
 
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
