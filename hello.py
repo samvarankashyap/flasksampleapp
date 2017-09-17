@@ -1,4 +1,5 @@
 import io
+import os
 import ConfigParser
 from flask import Flask
 from flask import render_template
@@ -14,7 +15,7 @@ DB_HOST = config.get("dbserver", "host")
 DB_USER = config.get("dbserver", "username")
 DB_PASS = config.get("dbserver", "password")
 
-PORT = os.getenv('PORT', 5000)
+PORT = int(os.getenv('PORT', 5000))
 
 @app.route('/hello/')
 @app.route('/hello/<name>')
