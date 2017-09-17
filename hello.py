@@ -14,6 +14,8 @@ DB_HOST = config.get("dbserver", "host")
 DB_USER = config.get("dbserver", "username")
 DB_PASS = config.get("dbserver", "password")
 
+PORT = os.getenv('PORT', 5000)
+
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
@@ -55,7 +57,6 @@ def projects():
 def about():
     return 'The about page'
 
-
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=PORT)
