@@ -37,12 +37,14 @@ def send_css(path):
 
 @app.route('/')
 def index():
+    HOST_NAME = open("/etc/hostname","r").read()
     HOST_INFO = ""
     HOST_INFO += "Index Page<br>"
     HOST_INFO += "Database host: "+DB_HOST+"<br>"
     HOST_INFO += "Database user: "+DB_USER+"<br>"
     HOST_INFO += "Database password: "+DB_PASS+"<br>"
-    HOST_INFO += "MAC ADDR of HOST: "+str(get_mac())+"<br>"
+    HOST_INFO += "UUID MAC ADDR of HOST: "+str(get_mac())+"<br>"
+    HOST_INFO += "Hostname of HOST: "+HOST_NAME+"<br>"
     return HOST_STR
 
 @app.route('/user/<username>')
