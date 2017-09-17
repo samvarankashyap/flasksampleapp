@@ -16,6 +16,8 @@ config.readfp(io.BytesIO(conf_str))
 DB_HOST = config.get("dbserver", "host")
 DB_USER = config.get("dbserver", "username")
 DB_PASS = config.get("dbserver", "password")
+APP_HOST = config.get("appserver", "host")
+REST_HOST = config.get("restserver", "host")
 
 PORT = int(os.getenv('PORT', 5000))
 
@@ -41,8 +43,8 @@ def index():
     HOST_INFO = ""
     HOST_INFO += "Index Page<br>"
     HOST_INFO += "Database host: "+DB_HOST+"<br>"
-    HOST_INFO += "Database user: "+DB_USER+"<br>"
-    HOST_INFO += "Database password: "+DB_PASS+"<br>"
+    HOST_INFO += "App server: "+APP_HOST+"<br>"
+    HOST_INFO += "REST server: "+REST_HOST+"<br>"
     HOST_INFO += "UUID MAC ADDR of HOST: "+str(get_mac())+"<br>"
     HOST_INFO += "Hostname of HOST: "+HOST_NAME+"<br>"
     return HOST_INFO
