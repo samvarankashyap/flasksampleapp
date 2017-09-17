@@ -45,7 +45,7 @@ def index():
     HOST_INFO += "Database password: "+DB_PASS+"<br>"
     HOST_INFO += "UUID MAC ADDR of HOST: "+str(get_mac())+"<br>"
     HOST_INFO += "Hostname of HOST: "+HOST_NAME+"<br>"
-    return HOST_STR
+    return HOST_INFO
 
 @app.route('/user/<username>')
 def show_user_profile(username):
