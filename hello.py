@@ -1,9 +1,11 @@
 import io
 import os
+import uuid
 import ConfigParser
 from flask import Flask
 from flask import render_template
 from flask import send_from_directory
+from uuid import getnode as get_mac
 
 app = Flask(__name__,static_url_path='/static')
 
@@ -35,8 +37,13 @@ def send_css(path):
 
 @app.route('/')
 def index():
-    return "Index Page<br>"+DB_HOST+"<br>"+DB_USER+"<br>"+DB_PASS
-
+    HOST_INFO = ""
+    HOST_INFO += "Index Page<br>"
+    HOST_INFO += "Database host: "+DB_HOST+"<br>"
+    HOST_INFO += "Database user: "+DB_USER+"<br>"
+    HOST_INFO += "Database password: "+DB_PASS+"<br>"
+    HOST_INFO += "MAC ADDR of HOST: "+str(get_mac())+"<br>"
+    return HOST_STR
 
 @app.route('/user/<username>')
 def show_user_profile(username):
@@ -52,7 +59,6 @@ def show_post(post_id):
 @app.route('/projects/')
 def projects():
     return 'The project page'
-
 
 @app.route('/about')
 def about():
